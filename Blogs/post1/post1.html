@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"  content="WebGLやThree.jsを用いたWebサイトのネックであるページ表示速度。最近サポートが進んでいるhttp2通信によって圧倒的な速度でweb上の3DCGを表示できるようになった。">
+    <meta name="keywords"  content="TKStudio,tkstudio,3DCG,鹿児島のWeb制作会社,Webサイト制作,webシステム,CG開発,オーダーメイドCG,WebGL,鹿児島CG制作,コンセプトアート開発">
+    <link rel="apple-touch-icon-precomposed" href="https://tkstudio.jp/img/Im15.jpg" />
+    <title>圧倒的な表示速度! http2通信によってWEB上の3DCG表現が手軽に!</title>
+    <!-- IE用 -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link rel="icon" href="../img/Icon.png">
+    <!-- GoogleAnalytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-YLB4DQ21FR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-YLB4DQ21FR');
+  </script>
+
+    <!--Twitter Card-->
+    <meta name=”twitter:card” content=”summary_large_image” />
+    <meta name=”twitter:site” content=”@takayahirat”/>
+    <meta name=”twitter:domain” content=”https://tkstudio.jp/Blogs/post1/post1.html” />
+    <meta property="og:title"  content=”圧倒的な表示速度!http2通信によってWEB上の3DCG表現が手軽に!” />
+    <meta property=”og:description” content=”現在普及が進んでいる次世代の通信プロトコルhttp2によって、Web3Dの表現がより身近に、手軽に行うことができるようになった! […]” />
+    <meta property="og:image" content=”https://tkstudio.jp/img/Im15.jpg” />
+
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+
+    <link rel="stylesheet" href="../css/blog.css">
+
+</head>
+<body>
+
+    <!-- Splash -->
+    <div id="splash">
+        <div id="splash_innertext">読み込み中です! しばらくお待ちください。</div>
+        <div id="splash_text"></div>
+    </div> 
+
+
+
+
+    <!-- Navigation -->
+    <nav>
+        <img src="../img/00.png" alt="">
+        <div class="navigation">
+            <ul>
+                <i id="menu-close" class="fas fa-times"></i>
+                <li><a href="../../index.html">トップ</a></li>
+                <li><a href="../../Sub&Blog/subPage.html">サービス</a></li>
+                <li><a href="../../ConceptPort/PortFolio.html">ポートフォリオ</a></li>
+                <li><a href="../../Sub&Blog/blog.html">ブログ</a></li>
+                <li><a href="../../Game/2023:02/index.html">月替りゲーム</a></li>
+                <li><a href="../../ContactForm/Contact.php">お問い合わせ</a></li>
+            </ul>
+            <img id="menu-btn" src="../img/menu.png" alt="">
+        </div>
+    </nav>
+
+
+    <div id="particles-js"></div>
+
+    <!-- Home -->
+    <section id="blog-container">
+        <div class="blogs blogpost">
+            <div class="post">
+                <img src="../img/02.jpg" alt="">
+                <h3>TKStudioで用いるWEB3D技術について。</h3>
+                <p>数年前まで、web上で3DCGを用いたサイトを公開する上で、ページを表示するまでの時間が
+                    とても長くかかり、使いたくても使えない。そんな大きなデメリットを持つ技術でした。
+                    近現代、２年ほど前からhttp2というサーバー内での新しい通信企画により、スマホでも難なく
+                    ３Dを用いたサイトが読み込めるようになったのです。
+                    <br><br><br>
+                    <hr><span class="sub_title">Webの世界を詳しく</span><hr><br>
+                    この記事では、WEB上で3DCGを構築する上で避けては通れない通信速度問題の解決について、
+                    http2通信を交えて解説します。<br><br>おこがましいかもしれませんが、Webについてさらっと、解説します！<br>
+                    WebサイトをGoogleなどのweb上にアップロードするには、ほとんどの場合サーバーを他会社からレンタルし、
+                    WEB上の住所となるURLに紐付け、常時動作させる必要があります。<br>普段使いのパソコンをサーバーとして稼働させることは、
+                    コスト的にも、労力的にもとっても不都合である場合がほとんどだからです。<br><br>
+                    国内のレンタルサーバー最大手と言われている会社に、"XServer"があります。<br>
+                    私のこのブログや、TKStudioサイトも,XServerでレンタルしたサーバーで動かしています。<br>
+                    いまだかつて、サーバーがダウンしたことがなく、安定していつでも高速にWebサイトを表示できる点で信頼しています。
+                    <br><br><br>
+                    さて、２年ほど前から普及したhttp2通信ですが、従来のhttp1通信に比べ、圧倒的な通信速度の差を生み出しています。<br>
+                    通常のWebサイト、(HtmlやCSSのみで構成したサイト)の場合、通信速度に大差はありません。<br>
+                    しかし、<br>私の作成しているようなパソコンのGPU(グラフィックチップ)をダイレクトに温めるサイトの場合、
+                    サーバーに皆さんのPC、スマホからリクエストするデータの量がどうしても増えてしまいます。<br><br>
+                    ところが、http2通信を用いると、http1通信の場合、ブラウザでの読み込みに、9~11秒かかる私のホームページが、http2通信で2~4秒で表示されます。<br><br>
+                    http2通信は、一言で説明するなれば、（スーパーマルチタスクサーバー）です。<br><br>
+                    <img src="../img/30.jpg" alt="">
+                    <br>例えば、画像を３枚ダウンロードするとします。http1では、1枚ロードが完了してから、２枚目に取り掛かりますが、
+                    http2は、３枚同時にダウンロードします。通信速度はもちろん、通信プロトコルとしての内部アルゴリズムがめちゃくちゃ最適化されました。！！<br><br><br>
+                    皆さんも経験したことがあるのではないでしょうか。。<br>
+                    特に大手企業の関連欄がたくさんあるサイトにアクセスし、10~20秒待たされたような経験。<br><br>
+                    いつまで待たされるかわからない分、Youtubeの広告の方がマシに思えてきます(笑)<br><br>
+                    そういった問題を解決してくれる次世代の通信規格http2です。<br><br>
+                    本題に戻りますが、国内最大手と紹介させていただいたXServerですが、HTTP2通信が始まったのは
+                    実は2021年の10月頃です。<br>
+                    この記事を書いているのが2022年の1月なので約3ヶ月前に始まったことになります。<br><br><br>
+
+                    <hr><span class="sub_title">TKStudioを開始</span><hr><br>
+                    http2通信が囁かれ出して、私がWebでの3Dグラフィックを作成することに決めたのは、今から４年前の高校３年生の冬でした。<br>
+                    パソコンにローカル環境を構築して３Dグラフィックスの技術を学び始め、最初の頃は、プログラムを書いてから、表示されるまで本当に
+                    時間がかかりました。最近になってようやく普及してきた"http2通信"。<br>
+                    レンタルサーバー会社もhttp2を提げる所がどんどん増えてきました。<br>
+                    WEB上でのネットワークが高速化したことで、WEB上でできることも比例してどんどん増えてきました。<br>
+                    TKStudioでは、新しい技術を取り入れ、これからも最高のグラフィックスを提供していきます！
+
+
+                </p>
+                <a href="../../Sub&Blog/blog.html">次の記事を読む</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- footer -->
+    <footer>
+        <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a>
+        <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+        
+        <div class="footer-col">
+            <h3>事業内容</h3>
+            <li><a href="../../index.html">トップページ</a></li>
+            <li><a href="../../Sub&Blog/subPage.html">サービスページ</a></li>
+            <li><a href="../../ConceptPort/PortFolio.html">ポートフォリオサイト</a></li>
+        </div>
+
+        <div class="footer-col">
+            <h3>企画</h3>
+            <li><a href="../../Sub&Blog/blog.html">ブログページ</a></li>
+            <li><a href="../../Hanabi/Hanabi.html">月替わりゲームサイト</a></li>
+            <li><a href="../../ContactForm/Contact.php">お問い合わせ</a></li>
+        </div>
+
+            <div class="subscribe">
+                <a href="../../ContactForm/Contact.php" class="yellow">お問い合わせフォームへ</a>
+            </div>
+
+        <div class="copyright">
+            <p>copyright @2022 All rights reserved @takaya</p>
+            <div class="pro-links">
+                <i class="fab fa-instagram"><a href="https://www.instagram.com/takaya3d/">Instagram</a></i>
+            </div>
+        </div>
+
+    </footer>
+
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="https://rawgit.com/kimmobrunfeldt/progressbar.js/master/dist/progressbar.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bxslider/4.2.15/jquery.bxslider.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/scrollgress/2.0.0/scrollgress.min.js"></script>
+    <script src="../js/script.js"></script>
+
+</body>
+</html>

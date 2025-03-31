@@ -1,0 +1,214 @@
+@charset "utf-8";
+/* レイアウトのためのCSS */
+
+body{
+    background:#f0f0f0;
+    font-family:'Marcellus', serif,"游ゴシック体", YuGothic, "游ゴシック Medium", "Yu Gothic Medium", "游ゴシック", "Yu Gothic", "メイリオ", sans-serif;
+	color: rgb(228, 228, 228);
+	font-size:1rem;
+	line-height:1.85;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	-webkit-text-size-adjust: 100%; 
+	word-wrap: break-word;
+}
+
+@media screen and (max-width:768px) {
+body{
+	font-size:0.8rem;
+	}
+}
+
+ul{
+	margin:0;
+	padding: 0;
+	list-style: none;
+}
+
+a{
+	color: rgb(226, 226, 226);
+    outline: none;
+}
+
+a:hover,
+a:active{
+	text-decoration: none;
+}
+
+
+
+/* Portfolio Area */
+
+.profile-area{
+    width:100%;
+    max-width: 900px;
+    background:rgba(218, 241, 255, 0.7);
+    align-items: center;
+    padding:40px;
+    /* margin: 40px 40px 40px 40px; */
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 40px;
+    width: 80rem;
+    text-align: center;
+    letter-spacing: 0.03em; 
+    color: #333;
+
+}
+@media screen and (max-width:900px) { 
+.profile-area{
+     max-width: 768px;
+    } 
+}
+
+@media screen and (max-width:768px) { 
+.profile-area{
+     max-width: 550px;
+    } 
+}
+
+@media screen and (max-width:550px) { 
+.profile-area{
+     max-width: 400px;
+     } 
+}
+
+@media screen and (max-width:400px) { 
+.profile-area{
+     max-width: 350px;
+     } 
+}
+
+.profile-area h2{
+    font-size: 0.9rem;
+    margin:0 0 40px 0;
+    line-height: 1.8;
+    color: #333;
+    font-family: 'Baskervville', serif;
+    text-align: center;
+}
+
+.profile-area h2 span{
+    font-size: 1.3rem;
+     display: block;
+    text-transform: uppercase;
+}
+
+.profile-area p{
+    margin:0 0 40px 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*数字カウント*/
+
+.progressbar-text{
+    font-size:5rem;
+   font-family: 'Italianno', cursive;
+}
+
+.progressbar-text span{
+    font-size:2rem;
+}
+
+/*横幅が768px以下になった際の指定*/
+@media only screen and (max-width:768px) {
+.progressbar-text{
+    font-size:3rem;
+}
+.progressbar-text span{
+    font-size:1.3rem;
+}
+
+}
+
+
+/* heading */
+
+.heading-block{
+    position: absolute;
+	z-index: 2;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	text-align: center;
+}
+
+.heading-block h1{
+    font-size:6vw;
+	letter-spacing: 0.2em;
+	color: #fff;
+    line-height: 1;
+    font-family: 'Italianno', cursive;
+}
+
+.heading-block p{
+    font-size:2vw;
+	letter-spacing: 0.2em;
+	color: #fff;
+}
+/*横幅が768px以下になった際の指定*/
+@media only screen and (max-width:768px) {
+  .heading-block h1{
+    font-size:4em;
+    }
+.heading-block p{
+    font-size:1.5em;
+    }
+}
+
+/* sns icon */
+#sns-icon img{
+    width: 20px;
+}
+
+#sns-icon{
+    position: absolute;
+    right:20px;
+    top:45%;
+}
+
+#sns-icon li{
+     margin:0 0 15px 0;   
+}
+
+/* copyright */
+
+small{
+    position: absolute;
+    left:20px;
+    top:40%;
+    color: #fff;
+    letter-spacing: 0.1em;
+    line-height: 1;
+    -ms-writing-mode: tb-rl;
+    -webkit-writing-mode: vertical-rl;
+    writing-mode: vertical-rl;
+}
+
+#sns-icon small {
+    font-size: 1rem;
+    left: 3px;
+    top: 30px;
+}
+
+
+
+/* #Particle */
+#particles-js{ 
+	position:fixed;/*描画固定*/
+	z-index:-1;/*描画を一番下に*/
+	width: 100%;
+	height: 100%;
+	background-color:#1a2330;/*背景色*/
+}

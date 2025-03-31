@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"  content="HTMLのみで実装できるVanta.jsの簡単な実装方法をご紹介します。専門知識ゼロでリアルな3DCGを手軽に導入できるライブラリ、Vanta.js">
+    <meta name="keywords"  content="TKStudio,tkstudio,3DCG,鹿児島のWeb制作会社,Webサイト制作,webシステム,CG開発,オーダーメイドCG,WebGL,鹿児島CG制作,コンセプトアート開発">
+    <link rel="apple-touch-icon-precomposed" href="https://tkstudio.jp/img/Im15.jpg" />
+    <meta property="article:published_time" content="2022-02-11T21:00:27+00:00">
+    <meta property="article:modified_time" content="2023-2-20T22:44:11+00:00">
+    <!-- GoogleAnalytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-YLB4DQ21FR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-YLB4DQ21FR');
+  </script>
+
+
+    <title>HTMLのみで実装！Vanta.jsの超簡単な実装方法</title>
+    <!-- IE用 -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link rel="icon" href="../img/Icon.png">
+
+
+    <!--Twitter Card-->
+    <meta name=”twitter:card” content=”summary_large_image” />
+    <meta name=”twitter:site” content=”@takayahirat”/>
+    <meta name=”twitter:domain” content=”https://tkstudio.jp/Blogs/post2/post2.html” />
+    <meta property="og:title"  content=”圧倒的な表示速度!http2通信によってWEB上の3DCG表現が手軽に!” />
+    <meta property=”og:description” content=”現在普及が進んでいる次世代の通信プロトコルhttp2によって、Web3Dの表現がより身近に、手軽に行うことができるようになった! […]” />
+    <meta property="og:image" content=”https://tkstudio.jp/img/Im15.jpg” />
+
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+
+    <link rel="stylesheet" href="../css/blog.css">
+
+</head>
+<body>
+
+    
+
+    <!-- Splash -->
+    <div id="splash">
+        <div id="splash_innertext">読み込み中です! しばらくお待ちください。</div>
+        <div id="splash_text"></div>
+    </div> 
+
+
+
+
+    <!-- Navigation -->
+    <nav>
+        <img src="../img/00.png" alt="">
+        <div id="oneComment">このブログを見ればきっといい事があるに違いない - TKStudio </div>
+        <div class="navigation">
+            <ul>
+                <i id="menu-close" class="fas fa-times"></i>
+                <li><a href="../../index.html">トップ</a></li>
+                <li><a href="../../Sub&Blog/subPage.html">サービス</a></li>
+                <li><a href="../../ConceptPort/PortFolio.html">ポートフォリオ</a></li>
+                <li><a href="../../Sub&Blog/blog.html">ブログ</a></li>
+                <li><a href="../../Game/2023:02/index.html">月替りゲーム</a></li>
+                <li><a href="../../ContactForm/Contact.php">お問い合わせ</a></li>
+            </ul>
+            <img id="menu-btn" src="../img/menu.png" alt="">
+        </div>
+    </nav>
+
+
+    <div id="particles-js"></div>
+
+    <!-- Home -->
+    <section id="blog-container">
+        <div class="blogs blogpost">
+            <div class="post">
+                <div id="vanta-canvas">
+                    <h1>HTMLのみでVanta.jsを簡単に実装！</h1>
+                </div>
+                    <hr><h2>HTMLのみで埋め込み可能な3DCG,Vanta.js</h2><hr><br>
+                 <p>WEB上で超簡単に3DCGを利用できるライブラリ、Vanta.js。使い方は、<span class="red-text">HTMLでThree.jsと利用したいVanta.jsのライブラリを読み込むだけ！</span><br><br>
+                    Vanta.jsの公式サイトから使いたいデザインのコードをコピペするだけ！three.jsと、vantaのライブラリもCDNをそのままコピペできます！<br><br>この記事を読めば、10分もかからずにWEB上でリッチな表現が導入できます！<br>
+                    <br>2分で読めるこの記事を読んであなたもクリエイティブコーダーの一員に!!</p>
+
+                    <hr><h3 class="sub_title">Vanta.js公式サイト</h3><hr><br>
+                    <a href="https://www.vantajs.com/?effect=clouds" class="site-url">Vanta.js公式サイト</a>
+                    <p>
+                        <img src="../img/post2/post2-1.png" alt="">
+                        <br>まず、Vanta.js公式サイトを訪れ、実装したいアニメーションの種類を選びます！<br><br>
+                        上の画像はCloudsというアニメーションで、右のCusomizeタブから、直感的に空の色や、<br>
+                        雲の色、雲の影の色など変更を加えることができます！<br>
+                        是非ご自身で使いたいデザインを模索してみてください。                  
+                    </p>
+
+                    <hr><h3 class="sub_title">HTMLの準備</h3><hr><br>
+                    <p>まずご自身のPCのどこでもいいので、一枚のHTMLをエディターで開いてください。<br>
+                        そして、<span class="red-text">bodyタグの一番上にvantaを描画するスペースをdivで作ります！</span><br><br>
+                        <span class="code">
+                          <span><</span>div id="your-element-selector"><span><</span><span>/div></span>
+                        </span><br><br>
+                    </p>
+
+
+                    <p>
+                        id名を”<span class="red-text">your-element-selector</span>”にすると、<br>
+                        公式サイトのコピペのみでvanta.jsが動きます！<br><br>
+                        次にvanta.jsを動かす二つのライブラリをインポートします。<br><br>
+                        今回は、インターネット経由で簡単にライブラリのインポートができる、CDN(コンテンツデリバリーネットワーク)を使用します！<br><br>
+                        CDNは、先ほどのvanta.jsの右側のCustomizeタブに書いてあるものをコピペしてください！<br><br>
+                        ＊"<span class="blue-text">instructions for Strikingly.com</span>"と書いてある水色の文字を押すとCDNのコードが出てきます！<br>
+                        <img src="../img/post2/post2-2.png" alt="">
+                        
+                        <div class="code-2">
+                            <span><</span><span>script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"</span><span>></span><span><</span><span>/</span><span>script></span><br>
+                            <span><</span><span>script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.clouds.min.js"</span><span>></span><span><</span><span>/</span><span>script></span>
+                        <br><br>
+                        </div>
+                    </p>
+                    <p>
+                        CDNの二つのコードをコピペできたら、先ほどのdivタグの下に貼り付けます！<br><br>
+                        最後に、ご自身でカスタマイズしたVantaのコードを貼り付けます！<br><br>
+                        では、公式サイトより、先ほどと同じ箇所の水色の文字
+                        ＊"<span class="blue-text">general instructions</span>"をクリックします！
+                        <img src="../img/post2/post2-3.png" alt="">
+                        <div class="code-2">
+                            <span><</span><span>script></span><br><span>VANTA.CLOUDS({</span><br><span>el: "#your-element-selector",</span><br><span>mouseControls: true,</span><br><span>touchControls: true,</span><br><span>gyroControls: false,</span><br><span>minHeight: 200.00,</span><br><span>minWidth: 200.00,</span><br><span>skyColor: 0xd78868</span><br><span>})</span><br><span><</span><span>/script></span>
+                        </div><br>
+                        そして、三つ目のScriptタグ（Vanta.jsのインスタンス）をコピペします。<br><br>
+                        先ほどの二つのライブラリの下に丸ごとペーストしましょう！<br>
+                        body内の記述はこのようになっているはずです！<br><br>
+                        <div class="code-2">
+                            <span><</span>div id="your-element-selector"><span><</span><span>/div></span><br><br>
+                            <span><</span><span>script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"</span><span>></</span><span>script></span><br><br>
+                            <span><</span><span>script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.clouds.min.js"</span><span>></</span><span>script></span><br><br>
+                            <span><</span><span>script></span><br><span>VANTA.CLOUDS({</span><br><span>el: "#your-element-selector",</span><br><span>mouseControls: true,</span><br><span>touchControls: true,</span><br><span>gyroControls: false,</span><br><span>minHeight: 200.00,</span><br><span>minWidth: 200.00,</span><br><span>skyColor: 0xd78868</span><br><span>})</span><br><span><</span><span>/script></span>
+                        </div><br>
+                    </p>
+
+
+                    <hr><h3 class="sub_title">Vanta.jsを用いた表現の完成！</h3><hr><br>
+                    <p>
+                        お疲れ様です！完成しました！！<br><br>
+                        上記のコードを貼り付けるだけでも、雲の表現をブラウザで表示することができます☺️<br><br>
+                        今回は、雲の3DCG表現を扱いましたが、vanta.jsは他にも様々なCG表現を<br>
+                        上記と全く同じ要領で扱うことができます!<br><br>
+                        Webサイトのデザインなどをされてらっしゃる方は、是非取り入れてみてください！！<br>
+                        <img src="../img/post2/post2-4.jpg" alt="">
+                        これは私の作成したサンプルサイトですが、vantaひとつで<span class="red-text">幻想的な世界観が増しました。</span><br><br>
+                        このような表現ひとつで、サイトの閲覧者もクライアントもワクワクしてくれますよ☺️<br><br>
+                        これからもクリエイティブコーディングの面白さを発信していきます！<br><br>
+                        私のツイッターや、このブログサイトのフォローをよろしくお願いいたします！
+
+                        <div>
+                            執筆者: 平田貴優
+                        </div>
+                        <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a>
+                        <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                    </p>
+
+
+
+
+
+
+
+                <a href="../post4-test/">次の記事を読む</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- footer -->
+    <footer>
+        <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a>
+        <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+        
+        <div class="footer-col">
+            <h3>事業内容</h3>
+            <li class="white"><a href="../../index.html">トップページ</a></li>
+            <li class="white"><a href="../subPage.html">サービスページ</a></li>
+            <li class="white"><a href="../../ConceptPort/PortFolio.html">ポートフォリオサイト</a></li>
+        </div>
+
+        <div class="footer-col">
+            <h3>企画</h3>
+            <li class="white"><a href="../blog.html">ブログページ</a></li>
+            <li class="white"><a href="#">月替わりゲームサイト</a></li>
+            <li class="white"><a href="../../ContactForm/Contact.php">お問い合わせ</a></li>
+        </div>
+
+            <div class="subscribe">
+                <a href="../../ContactForm/Contact.php" class="yellow">お問い合わせフォームへ</a>
+            </div>
+
+        <div class="copyright">
+            <p>copyright @2023 All rights reserved @takaya</p>
+            <div class="pro-links">
+                <i class="fab fa-instagram"><a href="https://www.instagram.com/takaya3d/">Instagram</a></i>
+            </div>
+        </div>
+
+    </footer>
+
+    <!--最終更新日-->
+    <script type="text/javascript">
+        
+        var weeks = new Array('日','月','火','水','木','金','土');
+        
+        var lastup = new Date(document.lastModified);
+        
+        var year = lastup.getYear(); // 年
+        var month = lastup.getMonth() + 1; // 月
+        var day = lastup.getDate(); // 日
+        var week = weeks[ lastup.getDay() ]; // 曜日
+        var hour = lastup.getHours(); // 時
+        var min = lastup.getMinutes(); // 分
+        var sec = lastup.getSeconds(); // 秒
+        
+        if(year < 2000) { year += 1900; }
+        
+        // 数値が1桁の場合、頭に0を付けて2桁で表示する指定
+        if(month < 10) { month = "0" + month; }
+        if(day < 10) { day = "0" + day; }
+        if(hour < 10) { hour = "0" + hour; }
+        if(min < 10) { min = "0" + min; }
+        if(sec < 10) { sec = "0" + sec; }
+        
+        // 表示開始
+        document.write('更新日時：<b>' + year + '年' + month + '月' + day + '日（' + week + '）');
+        document.write(hour + '時' + min + '分' + sec + '秒</b>');
+        // 表示終了
+        
+        // -->
+        </script>
+    
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="https://rawgit.com/kimmobrunfeldt/progressbar.js/master/dist/progressbar.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bxslider/4.2.15/jquery.bxslider.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/scrollgress/2.0.0/scrollgress.min.js"></script>
+    <script src="../js/script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.clouds.min.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.clouds.min.js"></script>
+    <script>
+        VANTA.CLOUDS({
+          el: "#vanta-canvas",
+          mouseControls: true,
+    touchControls: true,
+    gyroControls: false,
+    minHeight: 200.00,
+    minWidth: 200.00,
+    backgroundColor: 0x4e57d9,
+    skyColor: 0xd93c3c,
+    cloudColor: 0xf0b69e,
+    cloudShadowColor: 0x503c18,
+    sunColor: 0xedba79,
+    sunGlareColor: 0xebc261,
+    sunlightColor: 0xeda660,
+    speed: 1.80
+        })
+        </script>
+
+</body>
+</html>

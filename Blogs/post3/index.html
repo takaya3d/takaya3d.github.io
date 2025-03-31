@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"  content="Threejsで原因不明のエラーが発生したときの解消法">
+  <meta name="keywords"  content="Three.jsエラー,three.jsおかしい,three.js原因不明,three.jsデバッグ,threejsver,three.js,THREEJS,Threejs,">
+  <link rel="apple-touch-icon-precomposed" href="./model/thumbnail.png" />
+  <meta property="article:published_time" content="2023-02-24T21:00:27+00:00">
+  <meta property="article:modified_time" content="2023-2-25T23:04:11+00:00">
+
+  <!-- GoogleAnalytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-YLB4DQ21FR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-YLB4DQ21FR');
+  </script>
+
+  <title>3番目の記事</title>
+  <!-- IE用 -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <link rel="icon" href="./model/TKIcon.png">
+
+
+  <!--Twitter Card-->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@takayahirat"/>
+  <meta name="twitter:domain" content="tkstudio.jp/Sub&Blog/post1.html" />
+  <meta property="og:title"  content="Threejsで原因不明のエラーが発生したときの解消法" />
+  <meta property="og:description" content="Three.jsのエラーで絶賛デバック中の貴方にとりあえず試してほしい事があります […]" />
+  <meta property="og:image" content="./model/thumbnail.png" />
+  
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/tomorrow-night-blue.min.css">
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+  
+  <script type="module" crossorigin src="./assets/index-d9448b8a.js"></script>
+  <link rel="stylesheet" href="./assets/index-e2dccc49.css">
+</head>
+<body>
+
+
+
+
+    <!-- Splash -->
+    <div id="splash">
+      <div id="splash_innertext">読み込み中です! しばらくお待ちください。</div>
+      <div id="splash_text"></div>
+  </div> 
+
+
+
+
+
+
+  <!-- Navigation -->
+  <nav id="nav">
+      <img src="./assets/TKIcon-e5551e0b.png" alt="">
+      <div class="navigation">
+          <ul>
+              <i id="menu-close" class="fas fa-times"></i>
+              <li><a href="../../index.html">トップ</a></li>
+              <li><a href="../../Sub&Blog/subPage.html">サービス</a></li>
+              <li><a href="../../ConceptPort/PortFolio.html">ポートフォリオ</a></li>
+              <li><a href="../../Sub&Blog/blog.html">ブログ</a></li>
+              <li><a href="../../Game/2023:02/index.html">月替りゲーム</a></li>
+              <li><a href="../../ContactForm/Contact.php">お問い合わせ</a></li>
+          </ul>
+          <img id="menu-btn" src="data:image/png;base64,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" alt="メニューボタン">
+      </div>
+  </nav>
+
+
+
+    
+  <div id="world">
+    
+  </div>
+  <div id="credits">
+    <div id = "centerStyle">
+      <!-- <div class="balloon3-right-btm">
+        <p id="first_text">あなたの不安を解消</p>
+      </div> -->
+      <h1>Three.jsでエラーが出た時に試してほしい事</h1>
+    </div>
+
+  <!-- コードの掲載 -->
+  
+
+  
+
+
+  <!-- <div id="particles-js"></div> -->
+
+
+
+
+
+    <!-- Home -->
+    <section id="blog-container">
+        <div class="blogs blogpost">
+            <div class="post">
+
+
+                <!-- <img src="./model/01.jpg" alt=""> -->
+                <h2>Three.jsのエラーで絶賛デバック中の貴方にとりあえず試してほしい事があります</h2><br>
+                <p>Three.jsで返されるエラーの内容のほとんどはこの2つ</p>
+                <p><span class="marker">Three.js文法エラー</span>あるいは<span class="marker">Three.jsの互換性エラー</span><br>
+                  この２つに分類できると思います。
+                </p>
+                <p>何が正解なのかわからないエラー表示にはびっくりしますよね。
+                  でも、大丈夫。落ち着いて対処していけばなんとか動いてくれます！
+                </p>
+                <p>
+                  今回は、筆者自身がよく体験する原因不明のThreeJSエラーの解消法をご説明いたします
+                </p>
+
+                    <div class="toc-002">
+                      <div>
+                          目次
+                      </div>
+                      <ol>
+                          <li>Three.jsの文法チェックをもう一度してみる。
+                            <ol>
+                              <li>Three.js文法エラー</li>
+                              <li>ライブラリの読み込みをチェック</li>
+                              <li>JavaScriptのスコープの問題</li>
+                            </ol>
+                          </li>
+                          <li>Three.jsの互換性の問題
+                              <ol>
+                                <li>Three.jsのVerの問題</li>
+                                <li>ライブラリの互換性の問題</li>
+                                <li>ブラウザを変えてみる</li>
+                              </ol>
+                          </li>
+                          <li>あとがき</li>
+                      </ol>
+                  </div>
+
+                    <hr><span class="sub_title"><h3>Three.jsの文法チェックをもう一度してみる。</h3></span><hr>
+                    <div>
+                      <h4>Three.js文法エラー</h4><hr>
+                      <p>文法は、1番多いエラーの原因です。Three.jsではメソッドやプロパティの名前に大文字が含まれていることが多く、当たり前ですが、大文字を小文字で入力してる場合エラーになります。</p>
+                      <p>Uncaught TypeError: THREE.~~~ is not a constructor <br>
+                        このように、インスタンス元のクラスが存在しないとエラーが出たり、そのようなプロパティは存在しない(property of undefined)と返されると、文法エラーであることがわかります。
+                      </p>
+                      <h4>ライブラリの読み込みに問題がある。</h4><hr>
+                      <p>Three.jsには多くの拡張ライブラリが存在し、TweenMaxなどの数式ライブラリなども使う場合、多くのライブラリを読み込むと思います。</p>
+                      <p>npm,cdn経由で読み込む方も、フォルダに直接ファイルをダウンロードする方も もう一度ちゃんと読み込めているかチェックすることをお勧めします。</p>
+                      <p>よくあるパターンなのですが、<span class="marker">ライブラリをインストールしていなかったり、ライブラリの読み込み順番が違っている</span> とエラーが出ます。</p>
+                      <p>Three.jsの前に拡張ライブラリを読み込んだりすると、<span class="marker">そのクラス定義されていないよ!</span>とエラーを返してきます。<br>
+                        そりゃ、文法見返しても解消されないわけです。
+                      </p>
+                      <h4>JavaScriptスコープの問題</h4><hr>
+                      <p>次は、特に、アニメーションループさせる関数内で、プロパティの参照エラーを引き起こすパターンです。</p>
+                      <p>ネットに書かれているThree.jsコードは、整理されていないコードが多く、<br>
+                         そのままコピペしてしまうと、スコープエラーがよく出ます。</p>
+                      <p>これの解決策は、<span class="marker">Three.jsコードの大部分をClassに</span>し、あとはグローバルスコープでクラスを呼び出すだけという状態にすることです。<br>
+                        保守性の面でもこの方法はエラーが出にくいですが、<br>
+                        <p>勉強する時などに、教材にクラスを使って書かれているコードを見ることはほとんどないと思います。<br>
+                          グローバルスコープに直接コードを書く場合は、変数の再定義ができないように、
+                         <span class="marker">varを使わずletを使ったり、グローバルスコープでの呼び出しに注意すると良いでしょう。</span><br>
+                        </p> 
+                        <p>
+                          あとは、Object3Dなどをwindowで定義する際は、空定義ではなく実際に`new THREE.Object3D()`として読んでやらないと、スコープ問題が発生します
+                        </p> 
+                      
+                      <p>これらは私もよくやるエラー内容です。</p>
+                    </div>
+
+
+
+
+                    <pre class="cording language-javascript">
+                      <code>
+    // スコープエラー
+
+    function fn() {
+    let sphere;
+    let geometry = new THREE.SphereGeometry( 15, 32, 16 );
+    let material = new THREE.MeshToonMaterial();
+    sphere = new THREE.Mesh( geometry, material );
+    scene.add( sphere );
+
+    // fn関数のスコープ内から`sphere`は参照できる
+    console.log(sphere); // => Object3D[]
+    }
+    fn();
+    // fn関数のスコープ外から`sphere`は参照できないためエラー
+    console.log(sphere);
+                      <div></div>
+                      </code>
+                    </pre>
+                    <hr><span class="sub_title"><h3>Three.jsの互換性の問題</h3></span><hr>
+
+
+                    <div class="balloon-009">
+                      <img src="./assets/7-a84628ab.png" class="character" alt="TKStudioCharacter"/>
+                      <p><span class="marker2">諦めずに、もう一段階試してみましょう!!</span></p>
+                    </div>
+                    <h4>Three.jsファイルのverを変えてみる。</h4><hr>
+                    <p>Three.jsでは、<span class="marker">サポートしなくなった機能</span>などが多数あり、新しいVerのThree.jsをインポートしていることで、使いたい機能が動かなくなっている可能性があります。</p>
+                    <p>例えば、<span class="marker">"new THREE.Geometry()"などはThree.jsのバージョンr125以降からサポート外</span>となっています。</p>
+                    <p>そのため、Geometryをインスタンス化したい場合は、r124以前のverのThree.jsをインポートする必要があります。</p>
+                    <a href="https://cdnjs.com/libraries/three.js/r124">r124のThree.jsのリンク</a><br>
+                    <p>CDN経由でThree.jsをインポートする方は、上記から行うことができます!</p> 
+                    <p>余談ですが、new THREE.Geometryは、<br>
+                    代替する"new THREE.BufferGeometry()"からは、デフォルトでは頂点情報を毎回更新することなく挙動するため描画のパフォーマンスが良くなりました。</p>
+                    <p>サポート対象外となった機能はそれなりに欠点がある場合が多いため、旧バージョンのThree.jsでエラーが解消した場合は、</p>
+                    <p>Web上の偉大な先人たちに教えてもらい、新しい書き方をしてみることをお勧め致します!</p>
+
+                    <h4>Three.jsファイルと拡張ライブラリの互換性を合わせる</h4><hr>
+                    <p>これは主に、フォルダにライブラリを直接ダウンロードして使っている場合に多いのですが、
+                      Three.jsと拡張ライブラリの互換性が合わずに、何らかのエラーが出ているケースです。</p>
+                    <p>
+                      これに関しては 同じ時期のcdnにライブラリインポートを統一するか、<br>
+                     <span class="marker">npm経由でthree.jsをインストールし、importするのがベストです。</span> 
+                    </p>
+                      <p>私個人としては、開発、ビルドなど一貫して高速に処理してくれる<a href="https://ja.vitejs.dev/">vite</a>をお勧めします。<br>
+                        慣れればとても気持ちよく開発ができるので利用していない方は、導入を検討されてはいかがでしょうか。
+                      </p> 
+                    <h4>ブラウザを変えてみる。</h4><hr>
+                    <p>ブラウザを変えることで、動く場合もあります。
+                      GoogleChromeでしか動かない場合や、Safariだけは動かない場合など。<br>
+                      こちらも最後に試してみてください!
+                    </p>
+                    
+                    <hr>
+                    <h5>あとがき</h5>
+                    <p>今回はThree.jsを4年ほどいじっている筆者がエラーについて思い当たる節を絞り出してみました! <br>
+                       他にもこんな解決法がある！という方は、<span class="marker2">下のコメント投稿欄で共有していただけるととても嬉しいです！！</span></p>
+                       
+                  <div class="comment">   
+                  <form id="form"></form>
+                  <b></b><span class="info"></span>
+                  <h4>コメント</h4>
+                  <ol class="list"></ol>
+
+                  
+                </div>
+                <hr><p>読んでいただきありがとうございました！貴方の仕事に役立てれば幸いです!</p><hr>
+                <!-- <a class="NextSite" href="../../Sub&Blog/blog.html">次の記事を読む</a> -->
+            </div>
+          </div>
+        </section>
+        
+        
+
+
+
+
+
+
+
+  <!-- footer -->
+  <footer>
+      <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false">Tweet</a>
+      <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+      
+      <div class="footer-col">
+          <h3>事業内容</h3>
+          <li class="white"><a href="../../index.html">トップページ</a></li>
+          <li class="white"><a href="../subPage.html">サービスページ</a></li>
+          <li class="white"><a href="../../ConceptPort/PortFolio.html">ポートフォリオサイト</a></li>
+      </div>
+
+      <div class="footer-col">
+          <h3>企画</h3>
+          <li class="white"><a href="../blog.html">ブログページ</a></li>
+          <li class="white"><a href="#">月替わりゲームサイト</a></li>
+          <li class="white"><a href="../../ContactForm/Contact.php">お問い合わせ</a></li>
+      </div>
+
+          <div class="subscribe">
+              <a href="../../ContactForm/Contact.php" class="yellow">お問い合わせフォームへ</a>
+          </div>
+
+      <div class="copyright">
+          <p>copyright @2023 All rights reserved @takaya</p>
+          <div class="pro-links">
+              <i class="fab fa-instagram"><a href="https://www.instagram.com/tkart3d/">Instagram</a></i>
+          </div>
+      </div>
+
+  </footer>
+
+  <div id="oneComment">このブログを見ればきっといい事があるに違いない - TKStudio </div>
+
+
+
+
+
+
+
+  <!--最終更新日-->
+  <script type="text/javascript">
+      
+      var weeks = new Array('日','月','火','水','木','金','土');
+      
+      var lastup = new Date(document.lastModified);
+      
+      var year = lastup.getYear(); // 年
+      var month = lastup.getMonth() + 1; // 月
+      var day = lastup.getDate(); // 日
+      var week = weeks[ lastup.getDay() ]; // 曜日
+      var hour = lastup.getHours(); // 時
+      var min = lastup.getMinutes(); // 分
+      var sec = lastup.getSeconds(); // 秒
+      
+      if(year < 2000) { year += 1900; }
+      
+      // 数値が1桁の場合、頭に0を付けて2桁で表示する指定
+      if(month < 10) { month = "0" + month; }
+      if(day < 10) { day = "0" + day; }
+      if(hour < 10) { hour = "0" + hour; }
+      if(min < 10) { min = "0" + min; }
+      if(sec < 10) { sec = "0" + sec; }
+      
+      // 表示開始
+      document.write('更新日時：<b>' + year + '年' + month + '月' + day + '日（' + week + '）');
+      document.write(hour + '時' + min + '分' + sec + '秒</b>');
+      // 表示終了
+      
+      // -->
+      </script>
+
+
+
+
+  <script src="commentScript.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+  <script>
+    hljs.highlightAll();
+  </script>
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+  <!-- <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script> -->
+  <script src="https://rawgit.com/kimmobrunfeldt/progressbar.js/master/dist/progressbar.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bxslider/4.2.15/jquery.bxslider.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/scrollgress/2.0.0/scrollgress.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"></script>
+
+  
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+

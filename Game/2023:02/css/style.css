@@ -1,0 +1,54 @@
+@charset "UTF-8";
+* {
+  margin: 0px;
+  padding: 0px;
+}
+
+html, body {
+  background-color: #152323;
+  color: #f0f0f0;
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+canvas {
+  margin: 0px auto;
+  border: 1px solid silver;
+}
+
+h1 {
+  color: cyan;
+  font-family: "ヒラギノ明朝 ProN";
+  letter-spacing: 2px;
+}
+
+#start_button {
+  position: relative;
+  display: inline-block;
+  background-color: white;
+  border: 1px solid Black;
+  font-weight: 600;
+  padding: 10px 40px;
+  margin-top: 10px;
+  cursor: pointer;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+#start_button:hover {
+  background-color: black;
+  color: white;
+  -webkit-box-shadow: 5px 5px 10px 0 rgba(0, 0, 0, 0.5);
+          box-shadow: 5px 5px 10px 0 rgba(0, 0, 0, 0.5);
+}
+
+p {
+  font-size: 28px;
+  font-weight: 800;
+  margin-left: 450px;
+  color: #ff4eb5;
+  font-family: 'Impact','arial black', sans-serif;
+}
+/*# sourceMappingURL=style.css.map */
